@@ -29,6 +29,35 @@ public class GamePanel extends JPanel implements ActionListener {       //GamePa
         this.addKeyListener(new MyKeyAdapter()); //we create a class MyKeyAdapter which extends the properties from KeyAdapter class from java and adds a keylistner which took the response.
         startGame();
     }
+    public class MyKeyAdapter extends KeyAdapter { //created MyKeyAdapter method which extends KeyAdapter
+        @Override  //Overriding KeyPressed method
+        public void keyPressed(KeyEvent e) {
+            //switching the cases of keys we pressed
+            switch (e.getKeyCode()) { //e is the KeyEvent we declared means the event or response that takes place like clicking of button from our keyboard
+                case KeyEvent.VK_LEFT: //this is the code for left arrow key from our keyboard
+                    if (dir != 'R') { //as if our snake is not moving right then we can easily change it's direction to left
+                        dir = 'L';
+                    }
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    if (dir != 'L') {
+                        dir = 'R';
+                    }
+                    break;
+                case KeyEvent.VK_UP:
+                    if (dir != 'D') {
+                        dir = 'U';
+                    }
+                    break;
+                case KeyEvent.VK_DOWN:
+                    if (dir != 'U') {
+                        dir = 'D';
+                    }
+                    break;
+            }
+        }
+    }
+}
 
     public void startGame() {   //startGame class first run newFood class
 
