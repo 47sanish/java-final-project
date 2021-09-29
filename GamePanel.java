@@ -133,3 +133,24 @@ public void checkCollisions() {
             break;
         }
     }
+    //check if head touches left border
+    if (x[0] < 0) {
+        running = false;
+    }
+    //check if head touches right border
+    if (x[0] > SCREEN_WIDTH) {
+        running = false;
+    }
+    //check if head touches top border
+    if (y[0] < 0) {
+        running = false;
+    }
+    //check if head touches bottom border
+    if (y[0] > SCREEN_HEIGHT) {
+        running = false;
+    }
+
+    if (!running) { //check if running is not true then stop timer
+        timer.stop();
+    }
+}
