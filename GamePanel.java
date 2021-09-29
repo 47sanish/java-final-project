@@ -55,3 +55,31 @@ public class GamePanel extends JPanel implements ActionListener {       //GamePa
             //now we give colour , dimensions and shape for our snake's food
             g.setColor(Color.red); //setColor method gave our g Graphics an colour
             g.fillOval(snakeFoodX, snakeFoodY, UNIT_SIZE, UNIT_SIZE); //fillOval defines an oval shape for g and then inside fillOVal method we can pass 4 parameters (x-axis value , y-axis value ,width ,height)
+ //this is for our snake body
+ for (int i = 0; i < snake_length; i++) {
+    // here i gave my snake's head a different colour from body
+    if (i == 0) {
+        g.setColor(Color.cyan); //setting color to cyan
+
+    } else {
+        // in next if else block we give two colour to our snake
+        if (i % 2 == 0) {
+            g.setColor(Color.black); //for even blocks of snake's body set black colour
+        } else {
+            g.setColor(Color.white); //else provide white colour to the remaining body
+        }
+
+    }
+    g.fillOval(x[i], y[i], UNIT_SIZE, UNIT_SIZE); //and give oval shape
+}
+
+//now there are also more things that we need in our panel that can be drawn with the help of graphics class
+g.setColor(Color.GREEN); //set colour green
+g.setFont(new Font("Serif", Font.ITALIC, 40)); //setFont method in awt.Graphics class pass a parameter where we declare a new font ("String Font Name",Font.type,int value for size of font)
+FontMetrics metrics = getFontMetrics(g.getFont()); //FontMetrices clas inside awt package is used to encapsulate a given font and here we declare "metrics" as FontMetrices and then get font we gave to g Graphics
+g.drawString("Score: " + foodEaten, (SCREEN_WIDTH - metrics.stringWidth("Score: " + foodEaten)) / 2, g.getFont().getSize()); //drawString method draw the String on our panel by taking the following parameters("String that we want to draw ",x-length,y-length)
+} else {
+gameOver(g); //else if running is false then we go to the gameOver function with parameter g
+}
+
+}
