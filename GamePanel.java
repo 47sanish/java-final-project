@@ -30,4 +30,28 @@ public class GamePanel extends JPanel implements ActionListener {       //GamePa
         startGame();
     }
 
-   
+    public void startGame() {   //startGame class first run newFood class
+
+        newFood();
+        running = true; //sets running to true as through running we define the condition of our game
+        timer = new Timer(DELAY, this); //Timer is a swing class that takes DELAY as parameter and a listener
+        timer.start(); //starts the timer that we create from Timer class
+    }
+
+    public void paintComponent(Graphics g) { //we take a parameter g from Graphics class uswd in drawing the graphical structure in java
+        super.paintComponent(g); //we create the paintComponent class in which we inherit the method name paintComponent with the help of super keyword nd which perform its function with the help of graphic g that we create and passed in it
+        draw(g); //now we call draw method
+    }
+
+    public void draw(Graphics g) {
+
+        if (running) {  //this method first checks for runnning status of our game that if it is true then we can mave inside the if block
+            /* below for loop is just for understanding the panel via rows and columns you can also keep this in your code or you can run your code without it   
+
+            for (int i = 0; i < SCREEN_HEIGHT / UNIT_SIZE; i++) {  //this for loop is used for making our panel looks like grid that helps us to then understanding how our program works
+                g.drawLine(i * UNIT_SIZE, 0, i * UNIT_SIZE, SCREEN_HEIGHT); //now drawLine is a method in awt.Graphics class that helps us in draw line as it takes for parameter (x1,y1,x2,y2) where x1 and y1 are for initial point and x2 and y2 are for final point
+                g.drawLine(0, i * UNIT_SIZE, SCREEN_WIDTH, i * UNIT_SIZE);  //where it draw line between these two points that we pass in our method as parameters
+            }*/
+            //now we give colour , dimensions and shape for our snake's food
+            g.setColor(Color.red); //setColor method gave our g Graphics an colour
+            g.fillOval(snakeFoodX, snakeFoodY, UNIT_SIZE, UNIT_SIZE); //fillOval defines an oval shape for g and then inside fillOVal method we can pass 4 parameters (x-axis value , y-axis value ,width ,height)
