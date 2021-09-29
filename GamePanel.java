@@ -83,3 +83,35 @@ gameOver(g); //else if running is false then we go to the gameOver function with
 }
 
 }
+
+ //newFood() function create the new SnakeFood at given x and y axis
+ public void newFood() {
+    snakeFoodX = random.nextInt((SCREEN_WIDTH / UNIT_SIZE)) * UNIT_SIZE; //here it takes x-axis for creating new food for snake through random function
+    snakeFoodY = random.nextInt((SCREEN_HEIGHT / UNIT_SIZE)) * UNIT_SIZE; //here it takes y-axis
+
+}
+
+//this function now make our snake move
+public void move() {
+    for (int i = snake_length; i > 0; i--) { //starting from snake length it continously dec. the values of x and y axis which are arrays where we store the length of snake
+        x[i] = x[i - 1];
+        y[i] = y[i - 1];
+    }
+
+    //switching direction for our snake's movement when we press keys
+    switch (dir) {
+        case 'U':
+            y[0] = y[0] - UNIT_SIZE; //denote 'U' for Upper direction as decrease y-axis value by one which helps our snake to move in above y-axis
+            break;
+        case 'D':
+            y[0] = y[0] + UNIT_SIZE;
+            break;
+        case 'L':
+            x[0] = x[0] - UNIT_SIZE;
+            break;
+        case 'R':
+            x[0] = x[0] + UNIT_SIZE;
+            break;
+    }
+
+}
