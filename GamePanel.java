@@ -154,3 +154,28 @@ public void checkCollisions() {
         timer.stop();
     }
 }
+ //gameOver function comes in place when our game stops running
+ public void gameOver(Graphics g) {
+    //Score display
+    g.setColor(Color.red); //red color for our font graphics
+    g.setFont(new Font("Serif", Font.BOLD, 40));
+    FontMetrics metrics1 = getFontMetrics(g.getFont()); //again declaring a fontMetrics names as metrics1
+    g.drawString("Score: " + foodEaten, (SCREEN_WIDTH - metrics1.stringWidth("Score: " + foodEaten)) / 2, g.getFont().getSize());
+
+    //Game Over display
+    g.setColor(Color.red);
+    g.setFont(new Font("Serif", Font.BOLD, 75));
+    FontMetrics metrics2 = getFontMetrics(g.getFont());
+    g.drawString("Game Over", (SCREEN_WIDTH - metrics2.stringWidth("Game Over")) / 2, SCREEN_HEIGHT / 2);
+}
+
+@Override
+public void actionPerformed(ActionEvent e) { //now overriding the method actionPerformed and taking a parameter e declared through actionEvent class that fetch response as after we press buttons while playing game
+
+    if (running) { //if game is running then
+        move(); //first call move function
+        checkFood(); // calling checkFood function
+        checkCollisions();// calling check Collision function
+    }
+    repaint(); //this method cannot be overridden that's why we use this to repaint itself. If we have done anything to change the look of the component but not the size then we can call this method.
+}
